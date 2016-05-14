@@ -2,7 +2,7 @@
                          'Select Color By': 'Value',
                          '__enabled__': 'yes'},
               'label': 'Color to Alpha'},
-             {'fields': {'Amount': u'100', '__enabled__': 'yes'},
+             {'fields': {'Amount': u'100', '__enabled__': 'no'},
               'label': 'Desaturate'},
              {'fields': {'Color': u'#ffffff',
                          'Fill': 'Color',
