@@ -1,9 +1,9 @@
-module draw_circles(angle_offset, distance, size)
+module draw_circles(angle_offset, distance, size, col)
 {
 	for (angle = [0:45:360]) {
 		rotate(a=angle + angle_offset + 22.5)
 			translate([distance,0,0])
-				color("black")
+				color(col)
 					circle(r=size);
 	}
 	// center
@@ -31,25 +31,45 @@ module draw_circles(angle_offset, distance, size)
 
 
 function rot_values(step) = lookup(step, [
- 		[ 0, 0 ],
- 		[ 40, 0 ],
- 		[ 60, 45 ],
- 		[ 100, 45 ]
+ 		[ 0, 45 ],
+ 		[ 20, 45 ],
+ 		[ 50, 0 ],
+ 		[ 80, 0 ],
+ 		[ 100, 0]
  	]);
-module loading(step)
+
+function trans_values(step) = lookup(step, [
+		[0, 0],
+		[30, 50],
+		[50, 50],
+		[80, 0],
+		[100, 0]
+	]);
+
+function size_values(step) = lookup(step, [
+		[0, 3],
+		[30, 10],
+		[50, 10],
+		[80, 3],
+		[90, 10],
+		[100 ,3]
+	]);
+module loading(step, col)
 {
-	trans = 50 * exp(-pow((step-50),2)/500);
-	size = 7 * exp(-pow((step-50),2)/500) + 3; 
+	//trans = 50 * exp(-pow((step-50),2)/500);
+	trans = trans_values(step);
+	//size = 7 * exp(-pow((step-50),2)/500) + 3; 
+	size = size_values(step);
 
 	// this is bad, reaaaaaly bad but i don't know how i can
 	// define a variable and change it's value in another scope :-(
 	rot = rot_values(step);
-	draw_circles(rot, trans, size);
+	draw_circles(rot, trans, size, col);
 
 }
 
 $vpt = [0,0,0];
 $vpr = [0,0,0];
 $vpd = 300;
-loading($t * 100);
-loading(100 - $t * 100);
+loading($t * 100, "black");
+loading(100 - $t * 100, "red");
