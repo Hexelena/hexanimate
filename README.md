@@ -1,5 +1,5 @@
 # hexanimate
-A loading animation created using opens can for the raw images. Phatch was used for post-processing (color to alpha, resizing and anti-aliasing) and finally Gimp to create the gif image. 
+A loading animation created using Openscad for the raw images. Phatch was used for post-processing (color to alpha, resizing and anti-aliasing) and finally Gimp to create the gif image. 
 ####Big version
 
 <img src="loading_1024x1024(100).gif" width=512px>
