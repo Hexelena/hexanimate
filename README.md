@@ -1,15 +1,19 @@
 # hexanimate
 A loading animation created using opens can for the raw images. Phatch was used for post-processing (color to alpha, resizing and anti-aliasing) and finally Gimp to create the gif image. 
+####Big version
 
-Danke 
 <img src="loading_1024x1024(100).gif" width=512px>
 
-##"Building"
-You will need
+#### Smaller version
 
-* Python 3 to run the [generate pictures.py](generation script) 
+<img src="loading_t_128x128(50).gif">
+
+##"Building"
+You will need:
+
+* Python 3 to run the [generation script](generate pictures.py) 
 * Openscad 2015—03 or later(for the viewport variables) 
-* phatch if you want to run the phatch command provided
+* phatch if you want to run the phatch command list provided
 * Gimp to make the final image:
    1. Open the first image (sample0000.png).
    2. Click File > Open as Layers and choose all other pictures. They should be imported in the right order. 
