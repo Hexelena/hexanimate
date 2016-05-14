@@ -32,8 +32,8 @@ module draw_circles(angle_offset, distance, size, col)
 
 function rot_values(step) = lookup(step, [
  		[ 0, 45 ],
- 		[ 20, 45 ],
- 		[ 50, 0 ],
+ 		[ 30, 45 ],
+ 		[ 60, 0 ],
  		[ 80, 0 ],
  		[ 100, 0]
  	]);
@@ -51,11 +51,12 @@ function size_values(step) = lookup(step, [
 		[30, 10],
 		[50, 10],
 		[80, 3],
-		[90, 10],
+		[90, 25],
 		[100 ,3]
 	]);
 module loading(step, col)
 {
+	step = step % 100;
 	//trans = 50 * exp(-pow((step-50),2)/500);
 	trans = trans_values(step);
 	//size = 7 * exp(-pow((step-50),2)/500) + 3; 
@@ -71,5 +72,5 @@ module loading(step, col)
 $vpt = [0,0,0];
 $vpr = [0,0,0];
 $vpd = 300;
-loading($t * 100, "black");
-loading(100 - $t * 100, "red");
+loading($t * 100, "DarkSlateGray");
+loading($t * 100 + 50, "LightSlateGray");
