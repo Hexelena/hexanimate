@@ -1,24 +1,27 @@
 #! /usr/bin/env python3
 import os
-#from subprocess import DEVNULL, STDOUT, check_call
+import subprocess
 
-#check_call([command], stdout=DEVNULL, stderr=STDOUT)
-sample_count = 50
+sample_count = 100
 
-# Just being lazy. I don't need a python function.
-os.system('rm sample*')
+# remove old stuff
+for file in os.listdir():
+	if file.startswith('sample'):
+		os.remove(file)
 
 for i in range(0, sample_count):
-	command = "openscad -D'$t={:.2f}' -o sample{:04d}.png loading.scad --camera=0,0,0,0,0,0,310 --imgsize=512,512".format(i/sample_count, i)
-	#print(command)
+	command = ["openscad", "-D$t={:.2f}".format(i/sample_count), "loading.scad", "-osample{:04d}.png".format(i), "--camera=0,0,0,0,0,0,310", "--imgsize=512,512"]
+	# original shell command
+	# command = "openscad -D'$t={:.2f}' loading.scad -o sample{:04d}.png --camera=0,0,0,0,0,0,310 --imgsize=512,512".format(i/sample_count, i)
 	print('generating picture {} of {}'.format(i, sample_count))
-	os.system(command)
+	subprocess.check_call(command, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT)
 
 #print('\n----------------------------------------------\n')
 
-print('converting color to alpha then white')
+print('converting color to alpha, resizing and saving')
 # currently turns bg color to alpha and resizes to 128x128 then saves
-os.system('phatch loading-animation.phatch sample*')
+#os.system('phatch loading-animation.phatch sample*')
+subprocess.check_call('phatch loading-animation.phatch sample*.png', shell=True)
 
 print('\n----------------------------------------------\n')
 print('all done')
